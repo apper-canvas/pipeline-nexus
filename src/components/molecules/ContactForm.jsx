@@ -15,7 +15,8 @@ const [formData, setFormData] = useState({
     photo_url_c: "",
 science_marks_c: "",
     history_marks_c: "",
-    chemistry_marks_c: ""
+    chemistry_marks_c: "",
+    maths_marks_c: ""
   });
   
   const [errors, setErrors] = useState({});
@@ -33,7 +34,8 @@ setFormData({
         photo_url_c: contact.photo_url_c || "",
 science_marks_c: contact.science_marks_c || "",
         history_marks_c: contact.history_marks_c || "",
-        chemistry_marks_c: contact.chemistry_marks_c || ""
+        chemistry_marks_c: contact.chemistry_marks_c || "",
+        maths_marks_c: contact.maths_marks_c || ""
       });
     }
   }, [contact]);
@@ -78,13 +80,16 @@ if (!formData.name_c.trim()) {
 if (formData.science_marks_c && isNaN(Number(formData.science_marks_c))) {
       newErrors.science_marks_c = "Science marks must be a valid number";
     }
-
 if (formData.history_marks_c && isNaN(Number(formData.history_marks_c))) {
       newErrors.history_marks_c = "History marks must be a valid number";
     }
 
     if (formData.chemistry_marks_c && isNaN(Number(formData.chemistry_marks_c))) {
       newErrors.chemistry_marks_c = "Chemistry marks must be a valid number";
+    }
+
+    if (formData.maths_marks_c && isNaN(Number(formData.maths_marks_c))) {
+      newErrors.maths_marks_c = "Maths marks must be a valid number";
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -106,7 +111,8 @@ const contactData = {
         tags_c: formData.tags_c,
 science_marks_c: formData.science_marks_c ? Number(formData.science_marks_c) : null,
         history_marks_c: formData.history_marks_c ? Number(formData.history_marks_c) : null,
-        chemistry_marks_c: formData.chemistry_marks_c ? Number(formData.chemistry_marks_c) : null
+        chemistry_marks_c: formData.chemistry_marks_c ? Number(formData.chemistry_marks_c) : null,
+        maths_marks_c: formData.maths_marks_c ? Number(formData.maths_marks_c) : null
       };
 
       await onSave(contactData);
@@ -190,6 +196,15 @@ return (
           onChange={handleChange}
           placeholder="Enter chemistry marks"
           error={errors.chemistry_marks_c}
+/>
+        <Input
+          label="Maths Marks"
+          name="maths_marks_c"
+          type="number"
+          placeholder="Enter maths marks"
+          value={formData.maths_marks_c}
+          onChange={handleChange}
+          error={errors.maths_marks_c}
         />
         <Input
           label="Tags"
