@@ -13,7 +13,8 @@ const [formData, setFormData] = useState({
     tags_c: "",
     notes_c: "",
     photo_url_c: "",
-    science_marks_c: ""
+    science_marks_c: "",
+    history_marks_c: ""
   });
   
   const [errors, setErrors] = useState({});
@@ -29,7 +30,8 @@ setFormData({
         tags_c: contact.tags_c || "",
         notes_c: contact.notes_c || "",
         photo_url_c: contact.photo_url_c || "",
-        science_marks_c: contact.science_marks_c || ""
+        science_marks_c: contact.science_marks_c || "",
+        history_marks_c: contact.history_marks_c || ""
       });
     }
   }, [contact]);
@@ -71,10 +73,13 @@ if (!formData.name_c.trim()) {
       newErrors.company_c = "Company is required";
     }
 
-    if (formData.science_marks_c && isNaN(Number(formData.science_marks_c))) {
+if (formData.science_marks_c && isNaN(Number(formData.science_marks_c))) {
       newErrors.science_marks_c = "Science marks must be a valid number";
     }
 
+    if (formData.history_marks_c && isNaN(Number(formData.history_marks_c))) {
+      newErrors.history_marks_c = "History marks must be a valid number";
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -91,9 +96,10 @@ if (!formData.name_c.trim()) {
 
     try {
 const contactData = {
-        ...formData,
+...formData,
         tags_c: formData.tags_c,
-        science_marks_c: formData.science_marks_c ? Number(formData.science_marks_c) : null
+        science_marks_c: formData.science_marks_c ? Number(formData.science_marks_c) : null,
+        history_marks_c: formData.history_marks_c ? Number(formData.history_marks_c) : null
       };
 
       await onSave(contactData);
@@ -149,7 +155,7 @@ return (
           placeholder="Enter company name"
           required
 />
-        <Input
+<Input
           label="Science Marks"
           type="number"
           name="science_marks_c"
@@ -157,6 +163,16 @@ return (
           onChange={handleChange}
           placeholder="Enter science marks"
           error={errors.science_marks_c}
+        />
+
+        <Input
+          label="History Marks"
+          type="number"
+          name="history_marks_c"
+          value={formData.history_marks_c}
+          onChange={handleChange}
+          placeholder="Enter history marks"
+          error={errors.history_marks_c}
         />
 
         <Input
