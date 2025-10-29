@@ -16,7 +16,8 @@ const [formData, setFormData] = useState({
 science_marks_c: "",
     history_marks_c: "",
     chemistry_marks_c: "",
-    maths_marks_c: ""
+maths_marks_c: "",
+    english_marks_c: ""
   });
   
   const [errors, setErrors] = useState({});
@@ -35,7 +36,8 @@ setFormData({
 science_marks_c: contact.science_marks_c || "",
         history_marks_c: contact.history_marks_c || "",
         chemistry_marks_c: contact.chemistry_marks_c || "",
-        maths_marks_c: contact.maths_marks_c || ""
+maths_marks_c: contact.maths_marks_c || "",
+        english_marks_c: contact.english_marks_c || ""
       });
     }
   }, [contact]);
@@ -112,7 +114,8 @@ const contactData = {
 science_marks_c: formData.science_marks_c ? Number(formData.science_marks_c) : null,
         history_marks_c: formData.history_marks_c ? Number(formData.history_marks_c) : null,
         chemistry_marks_c: formData.chemistry_marks_c ? Number(formData.chemistry_marks_c) : null,
-        maths_marks_c: formData.maths_marks_c ? Number(formData.maths_marks_c) : null
+maths_marks_c: formData.maths_marks_c ? Number(formData.maths_marks_c) : null,
+        english_marks_c: formData.english_marks_c ? Number(formData.english_marks_c) : null
       };
 
       await onSave(contactData);
@@ -205,6 +208,15 @@ return (
           value={formData.maths_marks_c}
           onChange={handleChange}
           error={errors.maths_marks_c}
+/>
+        <Input
+          label="English Marks"
+          name="english_marks_c"
+          type="number"
+          value={formData.english_marks_c}
+          onChange={handleChange}
+          error={errors.english_marks_c}
+          placeholder="Enter english marks"
         />
         <Input
           label="Tags"
