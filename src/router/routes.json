@@ -24,12 +24,25 @@
       "redirectOnDeny": "/login"
     }
   },
-  "/pipeline": {
+"/pipeline": {
     "allow": {
       "when": {
         "conditions": [
           {
             "label": "User must be logged in to view pipeline",
+            "rule": "authenticated"
+          }
+        ]
+      },
+      "redirectOnDeny": "/login"
+    }
+  },
+  "/activities": {
+    "allow": {
+      "when": {
+        "conditions": [
+          {
+            "label": "User must be logged in to view activities",
             "rule": "authenticated"
           }
         ]
@@ -49,6 +62,7 @@
       }
     }
   },
+  "/signup": {
   "/signup": {
     "allow": {
       "when": {

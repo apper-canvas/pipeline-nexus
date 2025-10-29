@@ -5,6 +5,7 @@ import Layout from "@/components/organisms/Layout";
 import { getRouteConfig } from "@/router/route.utils";
 
 const Contacts = lazy(() => import("@/components/pages/Contacts"));
+const Activities = lazy(() => import("@/components/pages/Activities"));
 const Pipeline = lazy(() => import("@/components/pages/Pipeline"));
 const NotFound = lazy(() => import("@/components/pages/NotFound"));
 const Login = lazy(() => import("@/pages/Login"));
@@ -70,6 +71,10 @@ const mainRoutes = [
   createRoute({
     path: "contacts",
     element: <Contacts />,
+  }),
+createRoute({
+    path: "activities",
+    element: <Activities />,
   }),
   createRoute({
     path: "pipeline",
