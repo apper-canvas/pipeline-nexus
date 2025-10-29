@@ -62,8 +62,7 @@
       }
     }
   },
-  "/signup": {
-  "/signup": {
+"/signup": {
     "allow": {
       "when": {
         "conditions": [
