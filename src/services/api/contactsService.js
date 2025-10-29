@@ -103,6 +103,34 @@ async create(contactData) {
         const createdContact = successful[0].data;
         
         // After successful local creation, sync to CompanyHub
+        try {
+          const { ApperClient } = window.ApperSDK;
+          const companyHubClient = new ApperClient({
+            apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+            apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+          });
+          
+          await companyHubClient.functions.invoke(
+            import.meta.env.VITE_CREATE_COMPANYHUB_CONTACT,
+            {
+              body: JSON.stringify({
+                name: contactData.name_c || "",
+                email: contactData.email_c || "",
+                phone: contactData.phone_c || "",
+                company: contactData.company_c || "",
+                tags: contactData.tags_c || "",
+                notes: contactData.notes_c || ""
+              }),
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }
+          );
+        } catch (companyHubError) {
+          // Log CompanyHub sync failure but don't block local contact creation
+          console.info(`apper_info: Got this error in this function: ${import.meta.env.VITE_CREATE_COMPANYHUB_CONTACT}. The error is: ${companyHubError.message}`);
+        }
+        
         return createdContact;
       }
 
